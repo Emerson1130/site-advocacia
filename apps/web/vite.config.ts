@@ -76,7 +76,7 @@ export default defineConfig({
 		allowedHosts: ['.app-preview.com', '.app-preview.io'],
 	},
 	// server.ts imports the server build for its Express app and realtime server, so that module is the SSR entry.
-	environments: {
+	environments: process.env.STATIC_HOSTING === '1' ? undefined : {
 		ssr: {
 			build: {
 				rollupOptions: {

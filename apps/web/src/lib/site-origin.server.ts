@@ -16,6 +16,10 @@ const LOCAL_HOSTNAMES = new Set(['localhost', '127.0.0.1', '0.0.0.0', '[::1]']);
  * matter.
  */
 export const siteOrigin = (request: Request): string => {
+	if (process.env.SITE_ORIGIN) {
+		return new URL(process.env.SITE_ORIGIN).origin;
+	}
+
 	const { host, hostname } = new URL(request.url);
 
 	return `${LOCAL_HOSTNAMES.has(hostname) ? 'http' : 'https'}://${host}`;

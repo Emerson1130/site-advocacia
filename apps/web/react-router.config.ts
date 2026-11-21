@@ -4,4 +4,5 @@ export default {
 	appDirectory: 'src',
 	buildDirectory: '../../dist/apps/web',
 	ssr: true,
+	prerender: process.env.STATIC_HOSTING === '1' ? ['/'] : undefined,
 } satisfies Config;

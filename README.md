@@ -4,11 +4,22 @@ Landing page em React Router, Vite, Express e PocketBase. O conteúdo principal 
 
 ## Hospedagem necessária
 
-**Para publicar o site completo, incluindo o formulário, use um VPS.** O projeto precisa de Node.js para a página e PocketBase para armazenar as mensagens do formulário. O Web App gerenciado da Hostinger permite um processo Node.js, mas [não permite serviços adicionais nem portas próprias](https://www.hostinger.com/support/hostinger-node-js-limits-for-web-and-cloud-plans/). Nesse ambiente, a página e os links de WhatsApp funcionam, mas o formulário depende de um PocketBase hospedado separadamente. A versão atual também inclui uma rota WebSocket `/ws`, não suportada nessa hospedagem; a landing page não depende dela para renderizar.
+**No plano Web Premium, publique a versão estática deste repositório.** Para executar o site com servidor Node.js e PocketBase próprio, use um VPS. O Web App gerenciado da Hostinger permite um processo Node.js, mas [não permite serviços adicionais nem portas próprias](https://www.hostinger.com/support/hostinger-node-js-limits-for-web-and-cloud-plans/). Nesse ambiente, o formulário com armazenamento depende de um PocketBase externo.
 
-O plano **Web Premium** atual [não oferece aplicações Node.js](https://www.hostinger.com/support/6976044-parameters-and-limits-of-hosting-plans-in-hostinger/). Para usar a implantação Node.js gerenciada, confirme no hPanel que o plano permite Web Apps (Business/Unlimited ou Cloud). Se o plano for Premium, o projeto React Router SSR precisa de outro ambiente Node.js ou de uma conversão explícita para site estático; apenas copiar `dist` para `public_html` gera 403 porque não há `index.html` na raiz.
+O plano **Web Premium** atual [não oferece aplicações Node.js](https://www.hostinger.com/support/6976044-parameters-and-limits-of-hosting-plans-in-hostinger/). A versão estática gera `dist/apps/web/client/index.html` para a pasta `public_html`. Copiar a raiz de `dist` causa 403 porque não há `index.html` nela. Na versão Premium, o formulário prepara a mensagem no WhatsApp; nenhum dado é armazenado no PocketBase.
 
 O código exportado do Hostinger AI Builder/Horizons [não pode ser importado de volta no editor](https://www.hostinger.com/support/10771345-hostinger-ai-builder-agentic-mode-how-to-export-code/). Este repositório deve ser publicado como uma nova implantação no domínio.
+
+## Publicação no Web Premium (recomendada para este domínio)
+
+O repositório tem duas formas de entrega da mesma versão estática:
+
+1. **Git:** em um site do tipo **PHP/HTML personalizado**, abra **Advanced → Git** no hPanel, conecte `Emerson1130/site-advocacia`, selecione a branch **`premium-static`** e escolha **`public_html`** como diretório de destino. Essa branch já tem `index.html` na raiz e pode ser atualizada automaticamente. [Guia oficial da integração Git](https://www.hostinger.com/support/1583302-how-to-deploy-a-git-repository-in-hostinger/).
+2. **ZIP:** execute `npm ci` e `npm run package:premium` na raiz do repositório. O arquivo `site-advocacia-premium.zip` contém `index.html` na raiz. Envie o ZIP ao **File Manager → public_html** e use **Extract here**. Confirme que `public_html/index.html` existe após extrair. [Guia oficial do File Manager](https://www.hostinger.com/support/1869114-how-to-upload-backups-with-file-manager-in-hostinger/).
+
+Se o domínio ainda estiver associado ao **Hostinger AI Builder**, o File Manager e a integração Git para PHP/HTML não estarão disponíveis para aquele site. Nesse caso, crie ou migre o domínio para um site **PHP/HTML personalizado** antes de usar os passos acima. Faça backup do conteúdo anterior antes de substituir arquivos em `public_html`.
+
+Depois da publicação, abra `https://advogadaelisianeromualdo.com/` e confirme HTTP 200, imagens, menu, versão mobile e links de WhatsApp. O build estático é reproduzível com `npm run build:premium`; somente `dist/apps/web/client` deve ir ao `public_html`.
 
 ## Publicação como Web App Node.js (Business/Cloud)
 
