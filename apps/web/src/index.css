@@ -566,3 +566,26 @@ body {background:var(--paper);color:var(--deep)}
   .testimonial-grid {grid-template-rows:auto auto}
   .testimonial-audio {width:549px;margin-top:20px}
 }
+
+/* O cabeçalho não é fixo: o destino do menu fica próximo do topo visível. */
+html {scroll-behavior:auto;scroll-padding-top:16px}
+
+/* Cada foto da galeria conserva a proporção do recorte presente no JPG original. */
+@media(min-width:801px) {
+  .about-section {padding-bottom:58px}
+  .about-section h2 {margin-bottom:49px}
+  .about-mosaic {
+    height:auto;
+    aspect-ratio:929 / 460;
+    grid-template-columns:minmax(0,265fr) minmax(0,218fr) minmax(0,175fr) minmax(0,253fr);
+    grid-template-rows:minmax(0,195fr) minmax(0,145fr) minmax(0,108fr);
+  }
+  .about-copy {margin-top:30px}
+  .about-copy>p:first-child {letter-spacing:0}
+  .about-copy .values-title {margin-top:20px}
+  .value-tags {gap:18px}
+  .value-tags span {min-width:154px;background:#790008;font-weight:600}
+}
+@media(min-width:801px) and (max-width:1140px) {
+  .about-section {padding-left:7.5%;padding-right:6.5%}
+}
