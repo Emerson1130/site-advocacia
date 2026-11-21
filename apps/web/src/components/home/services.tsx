@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { services } from '@/data/services';
 import { consultationWhatsappUrl } from '@/constants/contact';
 
@@ -6,17 +6,39 @@ type Service = (typeof services)[number];
 
 function BenefitCard({ service, index }: { service: Service; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const supportsHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const cancelClose = () => {
+    if (closeTimer.current !== null) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  useEffect(() => () => {
+    if (closeTimer.current !== null) clearTimeout(closeTimer.current);
+  }, []);
 
   return (
     <details
       className="benefit-card"
       open={isOpen}
-      onMouseEnter={() => { if (supportsHover()) setIsOpen(true); }}
-      onMouseLeave={() => { if (supportsHover()) setIsOpen(false); }}
+      onMouseEnter={() => {
+        if (!supportsHover()) return;
+        cancelClose();
+        setIsOpen(true);
+      }}
+      onMouseLeave={() => {
+        if (!supportsHover()) return;
+        cancelClose();
+        closeTimer.current = setTimeout(() => {
+          setIsOpen(false);
+          closeTimer.current = null;
+        }, 420);
+      }}
     >
-      <summary onClick={(event) => { event.preventDefault(); setIsOpen((open) => !open); }}>
+      <summary onClick={(event) => { event.preventDefault(); cancelClose(); setIsOpen((open) => !open); }}>
         <img className="benefit-icon" src={`/reference/beneficio-${index + 1}.png`} alt="" />
         <span>{service.title}</span>
       </summary>

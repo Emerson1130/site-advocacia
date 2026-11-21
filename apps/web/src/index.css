@@ -612,7 +612,7 @@ html {scroll-behavior:auto;scroll-padding-top:16px}
   isolation:isolate;
   width:100%;
   interpolate-size:allow-keywords;
-  transition:transform .28s ease,background-color .28s ease,border-color .28s ease,box-shadow .28s ease;
+  transition:transform .4s ease,background-color .5s ease,border-color .5s ease,box-shadow .5s ease;
 }
 .benefit-card summary {position:relative;cursor:pointer;user-select:none}
 .benefit-card summary::after {
@@ -630,17 +630,17 @@ html {scroll-behavior:auto;scroll-padding-top:16px}
   font-weight:400;
   line-height:1;
   opacity:.72;
-  transition:transform .28s ease,opacity .28s ease;
+  transition:transform .48s ease,opacity .48s ease;
 }
 .benefit-card[open] summary::after {content:'−';transform:rotate(180deg);opacity:1}
-.benefit-card .benefit-icon {transition:transform .32s ease}
+.benefit-card .benefit-icon {transition:transform .48s ease}
 .benefit-card[open] {background:#fff7f7;border-color:#a00d1a;box-shadow:0 10px 24px #76051021}
 .benefit-card[open] .benefit-icon {transform:scale(1.08)}
 .benefit-card::details-content {
   height:0;
   opacity:0;
   overflow:clip;
-  transition:height .38s ease,opacity .3s ease,content-visibility .38s allow-discrete;
+  transition:height .62s ease-in-out,opacity .5s ease-in-out,content-visibility .62s allow-discrete;
 }
 .benefit-card[open]::details-content {height:auto;opacity:1}
 .benefit-card p {padding-top:2px}
