@@ -41,6 +41,13 @@ export default defineConfig({
 	server: {
 		port: 3000,
 		host: '::',
+		proxy: {
+			'/hcgi/platform': {
+				target: process.env.POCKETBASE_URL || 'http://127.0.0.1:8090',
+				changeOrigin: true,
+				rewrite: (requestPath) => requestPath.replace(/^\/hcgi\/platform/, ''),
+			},
+		},
 		hmr: { overlay: false },
 		cors: { origin: AllowedEditorOrigins },
 		headers: {

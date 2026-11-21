@@ -213,3 +213,114 @@ body {background:var(--paper);color:var(--deep)}
 .testimonial-grid {grid-template-columns:1.05fr 1fr}
 .testimonial-first img,.testimonial-second img {object-fit:fill}
 @media(max-width:520px) {.testimonial-grid {grid-template-columns:1fr}}
+/* Conteúdo centralizado em uma coluna de até 1140px. */
+.site-header {display:block;padding:0}
+.header-inner {width:86%;max-width:1140px;height:100%;margin-inline:auto;display:flex;align-items:center;gap:35px}
+.hero-inner {position:relative;z-index:1;width:86%;max-width:1140px;margin-inline:auto}
+.hero-content {padding-left:0}
+.trust-band>p,.trust-band>div {max-width:1140px;margin-inline:auto}
+@media(max-width:800px) {
+  .header-inner,.hero-inner {width:90%}
+  .header-inner {justify-content:space-between}
+  .hero-content {padding-left:0;padding-right:0}
+}
+@media(max-width:520px) {.hero-content {padding:30px 0}}
+@media(max-width:980px) {
+  .desktop-nav {display:none}
+  .menu-trigger {display:block}
+  .header-inner {justify-content:space-between}
+}
+@media(max-width:800px) {
+  .site-footer {padding-inline:0}
+  .footer-inner {width:90%}
+}
+.hero-content {max-width:100%}
+@media(min-width:801px) and (max-width:1000px) {.gavel-decoration {right:-50px}}
+/* Referência visual atualizada da abertura. */
+.announcement {height:5px;background:#bd0a10}
+.announcement span {display:none}
+.site-header {height:65px;background:linear-gradient(180deg,#650003,#660006 77%,#730708)}
+.header-inner {gap:25px}
+.brand {width:90px;flex-basis:90px}
+.brand img {width:87px;height:56px}
+.desktop-nav a {font-size:12px;letter-spacing:1.05px;padding:0 7px}
+.hero {height:clamp(345px,38.5vw,460px)}
+.hero:after {background:linear-gradient(90deg,#21000050,#2100001e 68%,transparent),linear-gradient(180deg,#62000055,transparent 22%)}
+.hero-content {width:100%;max-width:100%;padding:64px 0 0;color:#fff}
+.hero h1 {margin-left:20px;color:#fff;font-size:clamp(31px,3.5vw,40px);line-height:1.1;letter-spacing:2px;text-shadow:0 2px 2px #4c000055}
+.hero-role {width:470px;margin:7px 0 0 20px;color:#fff;font-size:15px;line-height:1.15;letter-spacing:1px;font-weight:400}
+.hero-role strong {font-size:12px;letter-spacing:.7px}
+.hero-description {margin:38px 0 20px;max-width:620px;color:#fff;font-size:15px;line-height:1.3;letter-spacing:.5px;font-weight:600}
+.hero-actions {gap:20px}
+.hero-actions .button {width:clamp(250px,28vw,310px);min-width:0;min-height:clamp(32px,3.6vw,40px);padding:8px 15px;font-size:clamp(10px,1.05vw,13px)}
+.trust-band {height:clamp(148px,16.4vw,190px);padding:20px 0 0;background:radial-gradient(circle at 50% 5%,#b5232a,#97000b 75%)}
+.trust-band>.trust-inner {display:block;max-width:1140px;width:86%;margin-inline:auto}
+.trust-caption {font-size:12px;line-height:1.25;text-align:center}
+.trust-caption strong {display:inline;font-size:inherit;line-height:inherit;min-width:0;font-weight:800}
+.trust-stat {display:flex;align-items:center;justify-content:center;gap:20px;margin-top:8px}
+.trust-stat strong {display:block;min-width:0;font-size:50px;line-height:1;font-weight:800}
+.trust-stat strong em {font-size:.55em;font-style:normal}
+.trust-stat span {font-size:8px;line-height:1.2;font-weight:800;text-align:left}
+.trust-note {margin-top:3px;font-size:11px;line-height:1.25;text-align:center}
+.services-section h2 {font-size:clamp(32px,3.6vw,39px)}
+.services-section .benefit-grid {margin-top:clamp(36px,4.2vw,50px)}
+.gavel-decoration {width:clamp(160px,18vw,210px);height:auto;top:-110px;right:-40px}
+@media(min-width:801px) and (max-width:980px) {
+  .desktop-nav {display:flex}
+  .menu-trigger {display:none}
+  .header-inner {justify-content:flex-start}
+}
+@media(max-width:800px) {
+  .site-header {height:65px}
+  .header-inner {gap:15px}
+  .brand {width:90px;flex-basis:90px}
+  .hero {height:510px}
+  .hero:after {background:linear-gradient(90deg,#240000b5,#2400006b 60%,#24000022)}
+  .hero-content {padding:40px 0 0}
+  .hero h1 {margin-left:0;color:#fff;font-size:clamp(26px,5vw,38px)}
+  .hero-role {width:auto;margin-left:0;color:#fff;font-size:13px;text-align:left}
+  .hero-description {margin:42px 0 22px;max-width:550px;color:#fff;font-size:15px}
+  .hero-actions {flex-wrap:wrap}
+  .hero-actions .button {width:250px;min-height:36px;font-size:10px}
+  .trust-band {height:auto;min-height:150px;padding:24px 0}
+  .trust-band>.trust-inner {width:90%}
+  .gavel-decoration {width:145px;top:-105px;right:-35px}
+}
+@media(max-width:520px) {
+  .hero {height:610px}
+  .hero:after {background:linear-gradient(180deg,#320000be 0%,#3200009b 55%,#32000020 100%)}
+  .hero-content {padding:30px 0 0;text-align:left}
+  .hero h1 {font-size:29px}
+  .hero-role {text-align:left;font-size:12px}
+  .hero-description {margin:34px 0 20px;font-size:14px;max-width:330px}
+  .hero-actions {flex-direction:column;align-items:flex-start;gap:10px}
+  .hero-actions .button {width:260px;min-height:40px;font-size:10px}
+  .trust-caption {font-size:10px}
+  .trust-stat strong {font-size:46px}
+  .trust-note {font-size:10px}
+  .gavel-decoration {width:100px;top:-88px;right:-15px}
+}
+@media(min-width:801px) {
+  .hero-image {object-position:center 90%}
+  .hero h1 {font-size:clamp(29px,3.25vw,38px)}
+  .hero-role {margin-left:35px}
+  .hero-description {font-size:16px}
+  .trust-caption {font-size:10.5px}
+  .trust-note {font-size:11.5px}
+  .services-section h2 {transform:translateY(-5px)}
+}
+@media(min-width:801px) and (max-width:980px) {
+  .brand img {width:70px;height:auto;transform:translateX(-20px)}
+}
+/* Faixa superior presente na referência mais recente. */
+.announcement {height:clamp(32px,4.4vw,48px);display:flex;align-items:center;justify-content:center;background:#b90009;color:#fff;font-size:clamp(11px,1.4vw,19px);font-weight:800;letter-spacing:2px;overflow:hidden;white-space:nowrap}
+.announcement span {display:block}
+@media(min-width:660px) and (max-width:800px) {
+  .desktop-nav {display:flex}
+  .menu-trigger {display:none}
+  .header-inner {justify-content:flex-start;gap:20px}
+  .brand img {width:60px;height:auto;transform:translateX(-15px)}
+  .desktop-nav a {font-size:9px;letter-spacing:.6px;padding:0 5px}
+}
+@media(min-width:521px) and (max-width:800px) {.gavel-decoration {right:-30px}}
+@media(min-width:660px) and (max-width:800px) {.hero-actions {flex-direction:row}}
