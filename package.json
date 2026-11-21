@@ -3,6 +3,9 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22.22.0"
+  },
   "scripts": {
     "setup": "bun install",
     "dev": "concurrently --kill-others --raw \"npm run dev --prefix apps/web\" \"npm run dev --prefix apps/pocketbase\"",

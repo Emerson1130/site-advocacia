@@ -1,0 +1,15 @@
+[Unit]
+Description=PocketBase - Site Dra. Elisiane Romualdo
+After=network.target
+
+[Service]
+Type=simple
+User=SEU_USUARIO
+WorkingDirectory=/home/SEU_USUARIO/site-advocacia/apps/pocketbase
+EnvironmentFile=/home/SEU_USUARIO/site-advocacia/apps/pocketbase/.env
+ExecStart=/home/SEU_USUARIO/site-advocacia/apps/pocketbase/pocketbase serve --http=127.0.0.1:8090 --encryptionEnv=PB_ENCRYPTION_KEY --dir=/home/SEU_USUARIO/site-advocacia/apps/pocketbase/pb_data --migrationsDir=./pb_migrations --hooksDir=./pb_hooks --hooksWatch=false
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

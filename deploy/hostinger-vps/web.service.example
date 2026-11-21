@@ -1,0 +1,17 @@
+[Unit]
+Description=Site Dra. Elisiane Romualdo
+After=network.target pocketbase.service
+Wants=pocketbase.service
+
+[Service]
+Type=simple
+User=SEU_USUARIO
+WorkingDirectory=/home/SEU_USUARIO/site-advocacia/apps/web
+EnvironmentFile=/home/SEU_USUARIO/site-advocacia/apps/web/.env
+# Ajuste o caminho do Node conforme `command -v node` no VPS.
+ExecStart=/usr/bin/node server.ts
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
