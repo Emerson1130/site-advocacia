@@ -1,6 +1,6 @@
 # Site Dra. Elisiane Romualdo
 
-Landing page em React Router, Vite, Express e PocketBase. O conteúdo principal tem largura máxima de 1140 px e versão para celular. As imagens usadas pelo site estão em `apps/web/public/reference`; os nove arquivos originais recebidos foram preservados ali com nomes descritivos.
+Landing page em React Router, Vite, Express e PocketBase. O conteúdo principal tem largura máxima de 1140 px e versão para celular. As imagens usadas pelo site estão em `apps/web/public/reference`; os nove arquivos originais recebidos foram preservados ali com nomes descritivos. O [JPG](docs/referencias/LANDING%20PAGE%20VERMELHA.jpg) e o [PDF](docs/referencias/LANDING%20PAGE%20VERMELHA.pdf) do layout também estão no repositório para consulta.
 
 ## Hospedagem necessária
 
