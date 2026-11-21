@@ -589,3 +589,18 @@ html {scroll-behavior:auto;scroll-padding-top:16px}
 @media(min-width:801px) and (max-width:1140px) {
   .about-section {padding-left:7.5%;padding-right:6.5%}
 }
+
+/* A sanfona expande o conteúdo gradualmente depois de um breve hover. */
+.faq-section {interpolate-size:allow-keywords}
+.faq-outer::details-content,.faq-list details::details-content {
+  height:0;
+  overflow:clip;
+  opacity:0;
+  transition:height .52s ease-in-out,opacity .42s ease-in-out,content-visibility .52s allow-discrete;
+}
+.faq-outer[open]::details-content,.faq-list details[open]::details-content {height:auto;opacity:1}
+.faq-list details[open] p {animation:none}
+.faq-outer>summary>span,.faq-list summary span {transition:transform .36s ease,color .36s ease}
+@media(prefers-reduced-motion:reduce) {
+  .faq-outer::details-content,.faq-list details::details-content {transition:none}
+}

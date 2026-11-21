@@ -9,10 +9,6 @@ const questions = [
   ['O resultado do pedido é garantido?', 'Não. Cada caso é analisado individualmente e a decisão depende dos requisitos legais e da avaliação do órgão responsável.'],
 ];
 
-function toggleOnHover(event: PointerEvent<HTMLDetailsElement>, open: boolean) {
-  if (event.pointerType === 'mouse') event.currentTarget.open = open;
-}
-
 function keepMouseHoverOpen(event: MouseEvent<HTMLElement>) {
   const fromMouse = 'pointerType' in event.nativeEvent
     ? event.nativeEvent.pointerType === 'mouse'
@@ -24,7 +20,24 @@ function keepMouseHoverOpen(event: MouseEvent<HTMLElement>) {
 }
 
 function HoverDetails({ children, className }: PropsWithChildren<{ className?: string }>) {
-  return <details className={className} onPointerEnter={event => toggleOnHover(event, true)} onPointerLeave={event => toggleOnHover(event, false)}>{children}</details>;
+  const hoverTimer = useRef<number | null>(null);
+
+  useEffect(() => () => {
+    if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
+  }, []);
+
+  const scheduleHover = (event: PointerEvent<HTMLDetailsElement>, open: boolean) => {
+    if (event.pointerType !== 'mouse') return;
+    if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
+
+    const details = event.currentTarget;
+    hoverTimer.current = window.setTimeout(() => {
+      details.open = open;
+      hoverTimer.current = null;
+    }, open ? 120 : 160);
+  };
+
+  return <details className={className} onPointerEnter={event => scheduleHover(event, true)} onPointerLeave={event => scheduleHover(event, false)}>{children}</details>;
 }
 
 export function Faq() {
@@ -38,7 +51,8 @@ export function Faq() {
       }
     };
 
-    openFromMenu();
+    const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+    if (navigation?.type !== 'reload') openFromMenu();
     window.addEventListener('hashchange', openFromMenu);
     return () => window.removeEventListener('hashchange', openFromMenu);
   }, []);
