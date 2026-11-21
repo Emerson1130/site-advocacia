@@ -4,6 +4,7 @@ import { consultationWhatsappUrl } from '@/constants/contact';
 export function Hero() {
   return <>
     <section id="inicio" className="hero">
+      <img className="hero-extension" src={site.officeImage} alt="" aria-hidden="true" />
       <img className="hero-image" src={site.officeImage} alt="Dra. Elisiane Romualdo em seu escritório" />
       <div className="hero-inner">
         <div className="hero-content">
