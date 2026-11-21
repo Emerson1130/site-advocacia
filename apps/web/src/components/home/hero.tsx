@@ -1,4 +1,5 @@
 import { site } from '@/constants/site';
+import { consultationWhatsappUrl } from '@/constants/contact';
 
 export function Hero() {
   return <>
@@ -10,8 +11,8 @@ export function Hero() {
           <p className="hero-role">ADVOGADA PREVIDENCIARISTA<br /><strong>OAB-GO 64.219</strong></p>
           <p className="hero-description">Defendendo os seus direitos e de sua família contra o INSS!<br />Clique na opção abaixo que faz mais sentido para o seu caso:</p>
           <div className="hero-actions">
-            <a className="button button-red" href="#contato">QUERO ATENDIMENTO ON-LINE</a>
-            <a className="button button-red" href="#contato">QUERO ATENDIMENTO PRESENCIAL</a>
+            <a className="button button-red" href={consultationWhatsappUrl} target="_blank" rel="noopener noreferrer">QUERO ATENDIMENTO ON-LINE</a>
+            <a className="button button-red" href={consultationWhatsappUrl} target="_blank" rel="noopener noreferrer">QUERO ATENDIMENTO PRESENCIAL</a>
           </div>
         </div>
       </div>
