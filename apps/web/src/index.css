@@ -496,3 +496,69 @@ body {background:var(--paper);color:var(--deep)}
   .faq-list details[open] p {animation:none}
 }
 @media(min-width:801px) {.testimonial-audio {margin-top:0}}
+
+/* O SVG preserva a arte do depoimento; os controles sobrepostos reproduzem o áudio real. */
+.testimonial-audio {align-self:start;height:auto}
+.testimonial-audio audio {display:none}
+.testimonial-audio img {pointer-events:none}
+.testimonial-audio-toggle {
+  position:absolute;
+  left:4.2%;
+  top:50%;
+  transform:translateY(-50%);
+  display:grid;
+  place-items:center;
+  width:clamp(24px,5.4%,32px);
+  aspect-ratio:1;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:#eeeeef;
+  color:#2b2c2f;
+  cursor:pointer;
+  transition:background-color .2s ease,transform .2s ease;
+}
+.testimonial-audio-toggle:hover {background:#fff;transform:translateY(-50%) scale(1.08)}
+.testimonial-audio-toggle:focus-visible,.testimonial-audio-seek:focus-visible {outline:2px solid #fff;outline-offset:3px}
+.testimonial-audio-seek {
+  appearance:none;
+  position:absolute;
+  left:11%;
+  width:76%;
+  top:70%;
+  height:23%;
+  margin:0;
+  background:transparent;
+  cursor:pointer;
+}
+.testimonial-audio-seek::-webkit-slider-runnable-track {
+  height:3px;
+  border-radius:3px;
+  background:linear-gradient(to right,#f5f5f5 var(--audio-progress),#ffffff66 var(--audio-progress));
+}
+.testimonial-audio-seek::-moz-range-track {height:3px;border-radius:3px;background:#ffffff66}
+.testimonial-audio-seek::-moz-range-progress {height:3px;border-radius:3px;background:#f5f5f5}
+.testimonial-audio-seek::-webkit-slider-thumb {
+  appearance:none;
+  width:9px;
+  height:9px;
+  margin-top:-3px;
+  border-radius:50%;
+  background:#fff;
+}
+.testimonial-audio-seek::-moz-range-thumb {width:9px;height:9px;border:0;border-radius:50%;background:#fff}
+.testimonial-audio-time {
+  position:absolute;
+  right:2.7%;
+  top:50%;
+  transform:translateY(-50%);
+  padding:3px 2px;
+  background:#29292b;
+  color:#fff;
+  font-size:clamp(7px,.85vw,9px);
+  line-height:1;
+  white-space:nowrap;
+  pointer-events:none;
+}
+.testimonial-audio-error {position:absolute;top:100%;left:0;z-index:2;padding:5px 8px;background:#fff;color:#9b0b17;font-size:11px}
+@media(prefers-reduced-motion:reduce) {.testimonial-audio-toggle {transition:none}}

@@ -1,4 +1,5 @@
 import { consultationWhatsappUrl } from '@/constants/contact';
+import { TestimonialAudio } from './testimonial-audio';
 
 export function Testimonials() {
   return <section id="depoimentos" className="section testimonials-section">
@@ -7,7 +8,7 @@ export function Testimonials() {
       <div className="testimonial-grid">
         <div className="testimonial-crop testimonial-first"><img src="/reference/depoimento-3.svg" alt="Depoimento de cliente elogiando a atenção e o trabalho da Dra. Elisiane" /></div>
         <div className="testimonial-crop testimonial-second"><img src="/reference/depoimento-2.svg" alt="Depoimento de cliente sobre o atendimento prestativo e esclarecedor" /></div>
-        <div className="testimonial-audio"><img src="/reference/faixa-som.svg" alt="Imagem de uma mensagem de áudio recebida de cliente" /></div>
+        <TestimonialAudio />
         <div className="testimonial-crop testimonial-third"><img src="/reference/depoimento.svg" alt="Depoimento de cliente satisfeita com o serviço e o acompanhamento" /></div>
       </div>
       <div className="center-action"><a className="button button-red" href={consultationWhatsappUrl} target="_blank" rel="noopener noreferrer">QUERO UMA CONSULTA</a></div>
