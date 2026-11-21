@@ -1,7 +1,7 @@
 /**
  * Process entry for `apps/web`, in development and in production.
  *
- * It owns the one HTTP server on port 3000: Express serves the built assets
+ * It owns the one HTTP server on process.env.PORT (or 3000 locally): Express serves the built assets
  * and hands page requests to React Router, and WebSocket upgrades on
  * `/ws` go to the realtime server from `server/app.ts`. In development the
  * same HTTP server also carries Vite's HMR socket.
@@ -26,7 +26,7 @@ process.env.NODE_ENV ??= 'production';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const port = Number(process.env.PORT ?? 3000);
-const host = process.env.HOST ?? '::';
+const host = process.env.HOST ?? '0.0.0.0';
 const appDirectory = path.dirname(fileURLToPath(import.meta.url));
 const buildDirectory = path.resolve(appDirectory, '../../dist/apps/web');
 const serverAppEntry = path.join(appDirectory, 'server/app.ts');

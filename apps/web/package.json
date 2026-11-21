@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "NODE_ENV=development node --conditions=development --env-file-if-exists=.env server.ts",
 		"build": "react-router build",
-		"start": "PORT=3000 node --env-file-if-exists=.env server.ts",
+		"start": "node --env-file-if-exists=.env server.ts",
 		"lint": "oxlint -c .oxlintrc.json --threads=1 --format default",
 		"typecheck": "react-router typegen && tsc --noEmit --singleThreaded"
 	},

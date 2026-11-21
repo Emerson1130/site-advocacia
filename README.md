@@ -4,9 +4,32 @@ Landing page em React Router, Vite, Express e PocketBase. O conteúdo principal 
 
 ## Hospedagem necessária
 
-**Para publicar o site completo na Hostinger, use um VPS.** O projeto precisa de dois processos: Node.js para a página e PocketBase para o formulário. Também usa a rota WebSocket `/ws`. O Web App gerenciado da Hostinger aceita aplicações Node.js, mas [não permite serviços adicionais, portas próprias nem WebSockets de entrada](https://www.hostinger.com/support/hostinger-node-js-limits-for-web-and-cloud-plans/). Publicar somente `dist` deixa o formulário sem backend.
+**Para publicar o site completo, incluindo o formulário, use um VPS.** O projeto precisa de Node.js para a página e PocketBase para armazenar as mensagens do formulário. O Web App gerenciado da Hostinger permite um processo Node.js, mas [não permite serviços adicionais nem portas próprias](https://www.hostinger.com/support/hostinger-node-js-limits-for-web-and-cloud-plans/). Nesse ambiente, a página e os links de WhatsApp funcionam, mas o formulário depende de um PocketBase hospedado separadamente. A versão atual também inclui uma rota WebSocket `/ws`, não suportada nessa hospedagem; a landing page não depende dela para renderizar.
+
+O plano **Web Premium** atual [não oferece aplicações Node.js](https://www.hostinger.com/support/6976044-parameters-and-limits-of-hosting-plans-in-hostinger/). Para usar a implantação Node.js gerenciada, confirme no hPanel que o plano permite Web Apps (Business/Unlimited ou Cloud). Se o plano for Premium, o projeto React Router SSR precisa de outro ambiente Node.js ou de uma conversão explícita para site estático; apenas copiar `dist` para `public_html` gera 403 porque não há `index.html` na raiz.
 
 O código exportado do Hostinger AI Builder/Horizons [não pode ser importado de volta no editor](https://www.hostinger.com/support/10771345-hostinger-ai-builder-agentic-mode-how-to-export-code/). Este repositório deve ser publicado como uma nova implantação no domínio.
+
+## Publicação como Web App Node.js (Business/Cloud)
+
+Conecte **este repositório** em **Criar site → Web App → GitHub** no hPanel. Não use a integração de Git para `public_html`, que publica apenas arquivos estáticos. Nas configurações do build, use:
+
+| Campo | Valor |
+| --- | --- |
+| Branch | `main` |
+| Root directory | `./` (raiz do repositório, para instalar os workspaces npm) |
+| Package manager | `npm` |
+| Node.js | `24.x` |
+| Build command | `npm run build` |
+| Output directory | `dist/apps/web` |
+| Start command | `npm start` |
+| Entry file, se solicitado | `server.js` na raiz |
+
+O comando `npm start` inicia somente o servidor web. Ele respeita `process.env.PORT`, fornecido pela Hostinger. `server.js` é uma entrada JavaScript equivalente para painéis que exigem um arquivo de entrada. **Não use `dist/apps/web/server/index.js` como entrada:** esse arquivo exporta o aplicativo React Router para ser carregado por `apps/web/server.ts`; ele não abre a porta HTTP sozinho. Os arquivos em `dist/apps/web/client` são servidos pelo mesmo processo.
+
+No hPanel, defina `NODE_ENV=production`. Não defina `PORT` ou `HOST`. O `.env` local não é enviado ao GitHub. A configuração para PocketBase só é necessária se você tiver esse serviço externo configurado e acessível; sem ele, o formulário de contato não envia mensagens. Os botões de consulta continuam abrindo o WhatsApp.
+
+Depois de enviar uma nova versão ao GitHub, confira em **Deployments** se o build e o início do processo terminaram sem erro. Se a origem for um ZIP, envie um ZIP novo ao fazer o redeploy; reutilizar o ZIP antigo mantém o código anterior. Verifique `https://SEU_DOMINIO/` (HTTP 200), `https://SEU_DOMINIO/api/health` e uma imagem em `/reference/`. A [documentação de redeploy da Hostinger](https://www.hostinger.com/support/how-to-redeploy-a-node-js-application/) descreve esses dois fluxos de atualização.
 
 ## Requisitos no VPS
 
@@ -57,7 +80,7 @@ cp apps/web/.env.example apps/web/.env
 openssl rand -hex 16
 ```
 
-Edite os dois `.env`. Coloque o valor aleatório de 32 caracteres em `PB_ENCRYPTION_KEY`. Defina o mesmo `PB_SUPERUSER_EMAIL` e `PB_SUPERUSER_PASSWORD` em ambos. No arquivo `apps/web/.env`, mantenha `POCKETBASE_URL=http://127.0.0.1:8090`, `HOST=127.0.0.1` e `PORT=3000` para o Nginx deste guia.
+Edite os dois `.env`. Coloque o valor aleatório de 32 caracteres em `PB_ENCRYPTION_KEY`. Defina o mesmo `PB_SUPERUSER_EMAIL` e `PB_SUPERUSER_PASSWORD` em ambos. No arquivo `apps/web/.env`, acrescente `HOST=127.0.0.1` e `PORT=3000` para o Nginx deste guia e mantenha `POCKETBASE_URL=http://127.0.0.1:8090`.
 
 ```bash
 chmod 600 apps/pocketbase/.env apps/web/.env
