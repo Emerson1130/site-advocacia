@@ -333,7 +333,25 @@ body {background:var(--paper);color:var(--deep)}
     margin-bottom:-20px;
     background:linear-gradient(180deg,#650003 0%,#650003 48%,#650003d9 72%,transparent 100%);
   }
-  .header-inner {width:90%;gap:84px}
+  .site-header::after {
+    content:'';
+    position:absolute;
+    top:47px;
+    left:0;
+    right:0;
+    height:clamp(60px,5.6vw,78px);
+    z-index:0;
+    pointer-events:none;
+    background:linear-gradient(180deg,
+      rgba(104,4,4,.92) 0%,
+      rgba(104,4,4,.9) 16%,
+      rgba(104,4,4,.6) 33%,
+      rgba(104,4,4,.6) 50%,
+      rgba(104,4,4,.37) 67%,
+      rgba(104,4,4,.15) 83%,
+      rgba(104,4,4,0) 100%);
+  }
+  .header-inner {width:90%;gap:84px;position:relative;z-index:1}
   .desktop-nav {margin-left:0}
   .desktop-nav a {font-size:14px}
   .brand img {transform:translateY(7px)}
@@ -348,8 +366,11 @@ body {background:var(--paper);color:var(--deep)}
     margin-left:34px;
     font-size:clamp(36px,3.38vw,40px);
     font-weight:700;
-    color:#f9ebef;
-    text-shadow:0 1px 2px #4c000033;
+    color:#fff;
+    background:linear-gradient(180deg,#fff 0%,#fff 24%,#f8eeee 40%,#edbaba 75%,#edbaba 100%);
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:none;
   }
   .hero-role {margin-left:75px}
   .hero-description {margin:56px 0 23px;max-width:750px;font-size:20px;line-height:1.25;letter-spacing:.8px}
