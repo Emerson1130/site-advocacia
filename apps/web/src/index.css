@@ -474,3 +474,25 @@ body {background:var(--paper);color:var(--deep)}
   .testimonial-third {width:100%}
   .floating-hearts {width:100px;height:auto;right:-25px;bottom:-75px}
 }
+
+/* Estados claros para links e botões, com movimento apenas em dispositivos com mouse. */
+.button {transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+.button-red:hover {background:linear-gradient(100deg,#740000,#bb2025)}
+.button:active {transform:translateY(0);filter:brightness(.96)}
+.desktop-nav a {transition:color .2s ease,text-decoration-color .2s ease}
+.faq-outer>summary>span,.faq-list summary span {transition:transform .2s ease,color .2s ease}
+.faq-list summary {transition:background-color .2s ease,color .2s ease}
+.faq-list details[open] p {animation:faq-reveal .22s ease-out}
+@keyframes faq-reveal {from {opacity:0;transform:translateY(-5px)} to {opacity:1;transform:translateY(0)}}
+@media(hover:hover) and (pointer:fine) {
+  .button:hover {transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 8px 18px #53000755}
+  .button:hover:active {transform:translateY(0);filter:brightness(.96)}
+  .desktop-nav a:hover {opacity:1;color:#ffe4cf;text-decoration:underline;text-underline-offset:6px}
+  .faq-outer>summary:hover,.faq-list summary:hover {color:#a00d1a}
+  .faq-list summary:hover {background-color:#f5eaea}
+}
+@media(prefers-reduced-motion:reduce) {
+  .button,.desktop-nav a,.faq-outer>summary>span,.faq-list summary span,.faq-list summary {transition:none}
+  .faq-list details[open] p {animation:none}
+}
+@media(min-width:801px) {.testimonial-audio {margin-top:0}}
