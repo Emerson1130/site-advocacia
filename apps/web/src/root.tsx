@@ -14,7 +14,7 @@ import { HorizonsPreviewScripts } from './horizons-preview-scripts';
 
 export const links: Route.LinksFunction = () => [
 	{ rel: 'stylesheet', href: stylesheet, precedence: 'default' },
-	{ rel: 'icon', href: '/favicon.png', type: 'image/png' },
+	{ rel: 'icon', href: '/favicon-vermelho.png', type: 'image/png' },
 	{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
 	{
 		rel: 'preconnect',

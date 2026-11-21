@@ -604,3 +604,57 @@ html {scroll-behavior:auto;scroll-padding-top:16px}
 @media(prefers-reduced-motion:reduce) {
   .faq-outer::details-content,.faq-list details::details-content {transition:none}
 }
+
+/* Os benefícios se abrem no hover e mantêm clique/toque no resumo. */
+.benefit-grid {align-items:start}
+.benefit-card {
+  position:relative;
+  isolation:isolate;
+  width:100%;
+  interpolate-size:allow-keywords;
+  transition:transform .28s ease,background-color .28s ease,border-color .28s ease,box-shadow .28s ease;
+}
+.benefit-card summary {position:relative;cursor:pointer;user-select:none}
+.benefit-card summary::after {
+  content:'+';
+  position:absolute;
+  top:12px;
+  right:14px;
+  display:grid;
+  place-items:center;
+  width:22px;
+  height:22px;
+  border:1px solid currentColor;
+  border-radius:50%;
+  font-size:17px;
+  font-weight:400;
+  line-height:1;
+  opacity:.72;
+  transition:transform .28s ease,opacity .28s ease;
+}
+.benefit-card[open] summary::after {content:'−';transform:rotate(180deg);opacity:1}
+.benefit-card .benefit-icon {transition:transform .32s ease}
+.benefit-card[open] {background:#fff7f7;border-color:#a00d1a;box-shadow:0 10px 24px #76051021}
+.benefit-card[open] .benefit-icon {transform:scale(1.08)}
+.benefit-card::details-content {
+  height:0;
+  opacity:0;
+  overflow:clip;
+  transition:height .38s ease,opacity .3s ease,content-visibility .38s allow-discrete;
+}
+.benefit-card[open]::details-content {height:auto;opacity:1}
+.benefit-card p {padding-top:2px}
+.benefit-card summary:focus-visible {outline:3px solid #8e0610;outline-offset:-5px;border-radius:18px}
+@keyframes benefit-pulse {
+  0%,100% {box-shadow:0 10px 22px #76051029,0 0 0 0 #a00d1a2b}
+  50% {box-shadow:0 13px 26px #76051038,0 0 0 6px #a00d1a12}
+}
+@media(hover:hover) and (pointer:fine) {
+  .benefit-card:hover {z-index:2;transform:translateY(-3px);animation:benefit-pulse 1.6s ease-in-out infinite}
+  .benefit-card:hover summary::after {opacity:1}
+}
+@media(max-width:520px) {.benefit-card summary::after {top:8px;right:8px;width:18px;height:18px;font-size:14px}}
+@media(prefers-reduced-motion:reduce) {
+  .benefit-card,.benefit-card .benefit-icon,.benefit-card summary::after,.benefit-card::details-content {transition:none}
+  .benefit-card:hover {animation:none;transform:none}
+}
