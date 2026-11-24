@@ -658,3 +658,10 @@ html {scroll-behavior:auto;scroll-padding-top:16px}
   .benefit-card,.benefit-card .benefit-icon,.benefit-card summary::after,.benefit-card::details-content {transition:none}
   .benefit-card:hover {animation:none;transform:none}
 }
+
+/* Títulos indicados para as raias e a comparação. */
+.services-section .section-inner>h2,
+.comparison .comparison-grid h2,
+.process-section .section-inner>h2,
+.testimonials-section .section-inner>h2,
+.about-section .section-inner>h2 {font-size:35px}
