@@ -705,3 +705,18 @@ html {scroll-behavior:auto;scroll-padding-top:16px}
 @media(hover:hover) and (pointer:fine) {
   .button-red:hover {background:#ff2a2a;filter:none;box-shadow:0 8px 20px #ff2a2a55}
 }
+
+/* Perguntas e respostas aparecem juntas dentro da sanfona principal. */
+.faq-list {display:grid;gap:12px;margin-top:26px;border:0}
+.faq-card {padding:15px 19px 18px;border:1px solid #4e090b;border-radius:16px;background:#eedbdb;color:#37080a;font:400 16px/1.4 'Open Sans',sans-serif}
+.faq-card h3 {font:700 16px/1.35 'Open Sans',sans-serif}
+.faq-card p {max-width:none;padding:0;color:inherit;font:400 16px/1.4 'Open Sans',sans-serif}
+.faq-card a {color:#0000ee;text-decoration:none}
+.faq-card a:hover,.faq-card a:focus-visible {text-decoration:underline}
+@media(max-width:520px) {
+  .faq-list {gap:11px;margin-top:20px}
+  .faq-card {padding:13px 14px 15px}
+}
+@media(max-width:800px) {
+  .announcement {display:none}
+}
