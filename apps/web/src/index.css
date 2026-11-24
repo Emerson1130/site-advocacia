@@ -682,3 +682,26 @@ html {scroll-behavior:auto;scroll-padding-top:16px}
   .process-section .process-steps {grid-template-columns:1fr}
   .process-section .process-step h3 {max-width:320px}
 }
+
+/* Ajustes finais de escala da composição e dos elementos de ação. */
+.versus img {display:block;width:41px;height:58px;object-fit:contain}
+.comparison-card.good,.comparison-card.risks {min-height:0}
+.comparison-card p:last-child,.comparison-card.risks p:last-child {margin-bottom:0}
+.testimonial-grid {width:min(100%,1100px);margin-left:auto;margin-right:auto}
+.testimonial-third {width:370px}
+.center-action .button {min-width:300px;min-height:64px;padding:12px 24px;font-size:17px}
+.testimonials-section .center-action .button {min-width:275px;min-height:60px}
+.faq-outer>summary h2 {font-size:35px}
+@media(min-width:801px) {
+  .testimonial-audio {width:calc(100% - 30px);margin-left:30px}
+}
+@media(max-width:800px) {
+  .center-action .button,.testimonials-section .center-action .button {min-width:240px;min-height:54px;font-size:14px}
+  .testimonial-third {width:100%}
+}
+@media(max-width:520px) {
+  .center-action .button,.testimonials-section .center-action .button {min-width:230px;min-height:50px}
+}
+@media(hover:hover) and (pointer:fine) {
+  .button-red:hover {background:#ff2a2a;filter:none;box-shadow:0 8px 20px #ff2a2a55}
+}
