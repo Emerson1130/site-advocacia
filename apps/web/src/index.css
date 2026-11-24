@@ -665,3 +665,20 @@ html {scroll-behavior:auto;scroll-padding-top:16px}
 .process-section .section-inner>h2,
 .testimonials-section .section-inner>h2,
 .about-section .section-inner>h2 {font-size:35px}
+
+/* Texto das opções nos cartões brancos. */
+.comparison-card p {font-family:Poppins,sans-serif;font-size:15px}
+
+/* Os quatro passos da lista seguem a medida pedida sem comprimir o mobile. */
+.process-section .step-top,
+.process-section .process-step h3 {font-size:35px}
+.process-section .process-step h3 {max-width:260px}
+@media(max-width:800px) {
+  .process-section .process-steps {grid-template-columns:repeat(2,minmax(0,1fr));column-gap:35px;row-gap:36px}
+  .process-section .process-step h3 {max-width:100%}
+  .process-section .step-top svg {display:none}
+}
+@media(max-width:520px) {
+  .process-section .process-steps {grid-template-columns:1fr}
+  .process-section .process-step h3 {max-width:320px}
+}
